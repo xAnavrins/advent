@@ -2,7 +2,7 @@ local year, day, part = ...
 
 local isInit = year == "init"
 if isInit then
-    year, day = day, part
+	year, day = day, part
 end
 
 local setupPath = "/setup"
@@ -13,11 +13,11 @@ local codePath = fs.combine(partPath, "code.lua")
 local answerPath = fs.combine(partPath, "answer.txt")
 
 if isInit then
-    local exists = fs.exists(dayPath)
-    if not exists then
-        fs.copy(setupPath, dayPath)
-    end
-    return print("Folder for AOC", year, "day", day, exists and "already exists" or "created")
+	local exists = fs.exists(dayPath)
+	if not exists then
+		fs.copy(setupPath, dayPath)
+	end
+	return print("Folder for AOC", year, "day", day, exists and "already exists" or "created")
 end
 
 _ENV.input = io.lines(inputPath)
@@ -30,15 +30,15 @@ end
 local loaded, err = loadfile(codePath, nil, _ENV)
 
 if loaded then
-    local result = loaded()
-    local file = fs.open(answerPath, "w")
-    file.write(tostring(result))
-    file.close()
+	local result = loaded()
+	local file = fs.open(answerPath, "w")
+	file.write(tostring(result))
+	file.close()
 
-    term.setTextColor(colors.yellow)
-    write("\nResult: ")
-    term.setTextColor(colors.white)
-    print(result)
+	term.setTextColor(colors.yellow)
+	write("\nResult: ")
+	term.setTextColor(colors.white)
+	print(result)
 else
-    printError(err)
+	printError(err)
 end
