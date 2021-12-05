@@ -48,7 +48,7 @@ local winDraw
 			end
 		end
 	end
-end)("fuck me dude")
+end)()
 
 local sum = 0
 for _, row in ipairs(winner) do

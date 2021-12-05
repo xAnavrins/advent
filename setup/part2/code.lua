@@ -6,4 +6,4 @@ for line in input do
 	print(table.concat(split(line, " "), ", "))
 end
 
-return answer
+return "answer"
