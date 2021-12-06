@@ -20,6 +20,7 @@ if isInit then
 	return print("Folder for AOC", year, "day", day, exists and "already exists" or "created")
 end
 
+_ENV.pause = function() os.pullEvent("key") end
 _ENV.input = io.lines(inputPath)
 _ENV.split = function (s, p)
 	local t = {}
