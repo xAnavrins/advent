@@ -21,6 +21,7 @@ if isInit then
 end
 
 _ENV.pause = function() os.pullEvent("key") end
+_ENV.yield = function() os.pullEvent("yield", os.queueEvent("yield")) end
 _ENV.input = io.lines(inputPath)
 _ENV.split = function (s, p)
 	local t = {}
