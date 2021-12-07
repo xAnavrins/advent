@@ -20,6 +20,12 @@ if isInit then
 	return print("Folder for AOC", year, "day", day, exists and "already exists" or "created")
 end
 
+local function timer()
+	local e = os.epoch("utc")
+	return function() return os.epoch("utc") - e end
+end
+
+_ENV.timer = timer
 _ENV.pause = function() os.pullEvent("key") end
 _ENV.yield = function() os.pullEvent("yield", os.queueEvent("yield")) end
 _ENV.input = io.lines(inputPath)
@@ -32,15 +38,20 @@ end
 local loaded, err = loadfile(codePath, nil, _ENV)
 
 if loaded then
+	local t = timer()
 	local result = loaded()
-	local file = fs.open(answerPath, "w")
-	file.write(tostring(result))
-	file.close()
-
 	term.setTextColor(colors.yellow)
 	write("\nResult: ")
 	term.setTextColor(colors.white)
 	print(result)
+	term.setTextColor(colors.yellow)
+	write("Time: ")
+	term.setTextColor(colors.white)
+	print(tostring(t()/1000).."s")
+
+	local file = fs.open(answerPath, "w")
+	file.write(tostring(result))
+	file.close()
 else
 	printError(err)
 end
