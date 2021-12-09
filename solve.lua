@@ -25,6 +25,8 @@ local function timer()
 	return function() return os.epoch("utc") - e end
 end
 
+local ccp = require("cc.pretty")
+_ENV.pretty = function(a) ccp.print(ccp.pretty(a)) end
 _ENV.timer = timer
 _ENV.pause = function() os.pullEvent("key") end
 _ENV.yield = function() os.pullEvent("yield", os.queueEvent("yield")) end
