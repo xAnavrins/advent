@@ -9,18 +9,18 @@ for line in input do
 	table.insert(values, {inputs, outputs})
 end
 
-local easySegments = {
-	[2] = 1, --
-	[4] = 4, --
-	[3] = 7, --
-	[7] = 8, --
+local easySegs = {
+	[2] = 1,
+	[4] = 4,
+	[3] = 7,
+	[7] = 8,
 }
 
-local j = 0
+local sum = 0
 for _, value in ipairs(values) do
 	for _, signal in ipairs(value[2]) do
-		j = j + (easySegments[#signal] and 1 or 0)
+		sum = sum + (easySegs[#signal] and 1 or 0)
 	end
 end
 
-return j
+return sum

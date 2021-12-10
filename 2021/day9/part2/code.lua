@@ -23,11 +23,11 @@ local function findBassin(map, x, y)
 		c = c + 1
 		for _, dir in ipairs(dirs) do
 			local tx, ty = x + dir[1], y + dir[2]
-			local cs = tx..","..ty
+			if not crawled[ty] then crawled[ty] = {} end
 
 			if (map[ty] and map[ty][tx]) then
-				if not crawled[cs] and (map[ty][tx] < 9) and (map[ty][tx] > pt) then
-					crawled[cs] = true
+				if not crawled[ty][tx] and (map[ty][tx] < 9) and (map[ty][tx] > pt) then
+					crawled[ty][tx] = true
 					crawl(map, tx, ty)
 				end
 			end
