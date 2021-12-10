@@ -47,7 +47,7 @@ if loaded then
 	term.setTextColor(colors.white)
 	print(result)
 	term.setTextColor(colors.yellow)
-	write("Time: ")
+	write("Time  : ")
 	term.setTextColor(colors.white)
 	print(tostring(t()/1000).."s")
 
