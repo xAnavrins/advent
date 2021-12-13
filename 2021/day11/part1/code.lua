@@ -45,7 +45,7 @@ for step = 1, 100 do
 	end
 	for y, row in ipairs(octos) do
 		for x in ipairs(row) do
-			if octos[y][x] == 10 then
+			if octos[y][x] > 9 then
 				flash(octos, x, y)
 			end
 		end

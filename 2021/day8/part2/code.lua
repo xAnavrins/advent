@@ -31,16 +31,16 @@ local seg = countSegments{
 	"abcefg", "cf", "acdeg", "acdfg", "bcdf", "abdfg", "abdefg", "acf", "abcdefg", "abcdfg"
 }
 local decodedSums = {
-	[seg.a + seg.b + seg.c + seg.e + seg.f + seg.g]			= 0,
-	[seg.c + seg.f]											= 1,
-	[seg.a + seg.c + seg.d + seg.e + seg.g]					= 2,
-	[seg.a + seg.c + seg.d + seg.f + seg.g]					= 3,
-	[seg.b + seg.c + seg.d + seg.f]							= 4,
-	[seg.a + seg.b + seg.d + seg.f + seg.g]					= 5,
-	[seg.a + seg.b + seg.d + seg.e + seg.f + seg.g]			= 6,
-	[seg.a + seg.c + seg.f]									= 7,
-	[seg.a + seg.b + seg.c + seg.d + seg.e + seg.f + seg.g]	= 8,
-	[seg.a + seg.b + seg.c + seg.d + seg.f + seg.g]			= 9,
+	[seg.a + seg.b + seg.c + seg.e + seg.f + seg.g]         = 0,
+	[seg.c + seg.f]                                         = 1,
+	[seg.a + seg.c + seg.d + seg.e + seg.g]                 = 2,
+	[seg.a + seg.c + seg.d + seg.f + seg.g]                 = 3,
+	[seg.b + seg.c + seg.d + seg.f]                         = 4,
+	[seg.a + seg.b + seg.d + seg.f + seg.g]                 = 5,
+	[seg.a + seg.b + seg.d + seg.e + seg.f + seg.g]         = 6,
+	[seg.a + seg.c + seg.f]                                 = 7,
+	[seg.a + seg.b + seg.c + seg.d + seg.e + seg.f + seg.g] = 8,
+	[seg.a + seg.b + seg.c + seg.d + seg.f + seg.g]         = 9,
 }
 
 local sum = 0

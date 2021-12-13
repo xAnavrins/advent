@@ -15,9 +15,7 @@ local command = {
 
 for line in input do
 	local action, amount = line:gmatch("(%a+)%s(%d+)")()
-	command[action](amount)
+	if command[action] then command[action](amount) end
 end
-print("Position", pos)
-print("Depth", depth)
 
 return pos * depth

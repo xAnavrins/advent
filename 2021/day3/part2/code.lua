@@ -39,11 +39,7 @@ for i = 1, bitLen do
 	if #coValues == 1 then break end
 end
 
-print(#oxValues)
-print(#coValues)
 local oxy = tonumber(oxValues[1], 2)
 local co = tonumber(coValues[1], 2)
-print(oxy)
-print(co)
 
 return oxy * co
