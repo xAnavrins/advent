@@ -22,9 +22,10 @@ _ENV.split = function (s, p)
 	return t
 end
 
-local function run(cpath, ipath)
-	_ENV.input = io.lines(ipath)
-	local loaded, err = loadfile(cpath, nil, _ENV)
+local function run(paths)
+	_ENV.input = io.lines(paths.input)
+	_ENV.filepaths = paths
+	local loaded, err = loadfile(paths.code, nil, _ENV)
 	local t, result = timer()
 	if loaded then
 		result = loaded()
@@ -43,7 +44,7 @@ local function getPaths(year, day, part)
 	paths.answer = part and fs.combine(paths.part, "answer.txt")
 	return paths
 end
-_G.paths = getPaths
+
 if isInit then
 	local paths = getPaths(year, day)
 	local exists = fs.exists(paths.day)
@@ -62,7 +63,7 @@ elseif isAll then
 				local paths = getPaths(year, day, part)
 				if fs.exists(paths.part) then
 					term.setTextColor(colors.orange) print("  Part " .. part)
-					local result, time = run(paths.code, paths.input)
+					local result, time = run(paths)
 					sum = sum + time
 					term.setTextColor(colors.yellow) write("    Result: ")
 					term.setTextColor(colors.white) write(result)
@@ -79,7 +80,7 @@ elseif isAll then
 
 else
 	local paths = getPaths(year, day, part)
-	local result, time = run(paths.code, paths.input)
+	local result, time = run(paths)
 	term.setTextColor(colors.yellow)
 	write("\nResult: ")
 	term.setTextColor(colors.white)
