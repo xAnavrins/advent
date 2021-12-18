@@ -1,7 +1,10 @@
+local inpath, outpath = ...
+
 local paper = {}
 local folds = {}
 local maxX, maxY = -1, -1
-for line in input do
+
+for line in io.lines(shell.resolve(inpath)) do
     line:gsub("(%d+),(%d+)", function(x, y)
         x, y = tonumber(x), tonumber(y)
         if not paper[y] then paper[y] = {} end
@@ -13,6 +16,8 @@ for line in input do
         table.insert(folds, {axis, tonumber(pos)})
     end)
 end
+
+local function pause() os.pullEvent("key") end
 
 paper.x = maxX + ((maxX%2==1) and 1 or 0)
 paper.y = maxY + ((maxY%2==1) and 1 or 0)
@@ -63,11 +68,15 @@ local function render(p, d)
     if d.close then d.close() end
 end
 
+print(paper.x, paper.y) pause()
+render(paper, term) pause()
+
 for i = 1, #folds do
     fold(paper, folds[i])
+    render(paper, term) pause()
 end
 
-render(paper, fs.open(fs.combine(filepaths.day, "/folded.txt"), "w"))
--- render(paper, term)
-
-return "See folded.txt"
+render(paper, term)
+if outpath then
+    render(paper, fs.open(shell.resolve(outpath), "w"))
+end

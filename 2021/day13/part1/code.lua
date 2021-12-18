@@ -14,46 +14,47 @@ for line in input do
     end)
 end
 
-local function count(paper)
-    local sum = 0
-    for y = 0, maxY do
-        for x = 0, maxX do
-            sum = sum + (paper[y][x] and 1 or 0)
-        end
-    end
-    return sum
-end
+paper.x = maxX + ((maxX%2==1) and 1 or 0)
+paper.y = maxY + ((maxY%2==1) and 1 or 0)
 
 local function fold(paper, inst)
     local axis, pos = inst[1], inst[2]
     if axis == "x" then
-        local half = maxX - pos
-        for y = 0, maxY do
-            for x = 1, half do
+        for y = 0, paper.y do
+            for x = 1, pos do
                 if not paper[y] then paper[y] = {} end
-                if paper[y][half+x] then
-                    paper[y][half-x] = true
+                if paper[y][pos+x] then
+                    paper[y][pos-x] = true
                 end
-                paper[y][half+x] = false
+                paper[y][pos+x] = false
             end
         end
-        maxX = pos-1
+        paper.x = pos-1
 
     elseif axis == "y" then
-        local half = maxY - pos
-        for x = 0, maxX do
-            for y = 1, half do
-                if not paper[half+y] then paper[half+y] = {} end
-                if not paper[half-y] then paper[half-y] = {} end
-                if paper[half+y][x] then
-                    paper[half-y][x] = true
+        for x = 0, paper.x do
+            for y = 1, pos do
+                if not paper[pos+y] then paper[pos+y] = {} end
+                if not paper[pos-y] then paper[pos-y] = {} end
+                if paper[pos+y][x] then
+                    paper[pos-y][x] = true
                 end
-                paper[half+y][x] = false
+                paper[pos+y][x] = false
             end
         end
-        maxY = pos-1
+        paper.y = pos-1
     end
     return paper
+end
+
+local function count(paper)
+    local sum = 0
+    for y = 0, paper.y do
+        for x = 0, paper.x do
+            sum = sum + (paper[y][x] and 1 or 0)
+        end
+    end
+    return sum
 end
 
 return count(fold(paper, folds[1]))
