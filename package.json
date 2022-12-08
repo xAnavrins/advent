@@ -1,0 +1,30 @@
+{
+  "name": "adventofcode",
+  "version": "1.0.0",
+  "description": "Advent of Code 2022",
+  "author": "Anavrins",
+  "homepage": "https://github.com/xAnavrins/adventofcode#readme",
+  "license": "ISC",
+  "keywords": [
+    "aoc",
+    "adventofcode"
+  ],
+  "type": "module",
+  "scripts": {
+    "init": "node utils/solver.js init",
+    "solve": "node utils/solver.js solve",
+    "submit": "node utils/solver.js submit",
+    "dev": "nodemon utils/solver.js solve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xAnavrins/adventofcode.git"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "jsdom": "^20.0.3",
+    "node-fetch": "^3.3.0"
+  }
+}
