@@ -4,7 +4,7 @@
 import path from "path/posix"
 import fs from "fs/promises"
 import fetch from "node-fetch"
-import cookie from "../aoc_cookie.json" assert { type: "json"}
+import headers from "../aoc_headers.js"
 import { JSDOM } from "jsdom"
 
 let [,, cmd, day, part] = process.argv
@@ -39,7 +39,7 @@ if (cmd === "init") {
     console.log("Fetching your puzzle input...")
     let data = await fetch(dayUrl + "/input", {
         method: "GET",
-        headers: cookie
+        headers: headers
     })
 
     if (data?.ok) {
@@ -68,13 +68,13 @@ if (cmd === "init") {
     console.log("Submitting your answer...")
     let data = await fetch(dayUrl + "/answer", {
         method: "POST",
-        headers: {'Content-Type': 'application/x-www-form-urlencoded', Cookie: cookie.Cookie},
+        headers: {...headers, 'Content-Type': 'application/x-www-form-urlencoded'},
         body: `level=${part}&answer=${encodeURIComponent(fileData)}`
     })
     let htmlData = await data.text()
     let dom = new JSDOM(htmlData)
     let p = dom.window.document.querySelector("main > article > p").textContent
-    console.log(p);
+
     if (p.match(/answer is too low/)) {
         console.log("Answer is too low, wait 60s")
 
@@ -89,10 +89,10 @@ if (cmd === "init") {
         console.log(`Answer is correct (${fileData})`);
 
     } else if (p.match(/Did you already complete/)) {
-        console.log("This puzzle is completed")
+        console.log("This puzzle is already completed")
 
-    } else if (p.match(/someone elses/)) {
-        console.log(`NYI`);
+    } else if (p.match(/for someone else/)) {
+        console.log(`Answer is correct... for someone else! (${fileData})`);
 
     }
 }
