@@ -77,13 +77,16 @@ if (cmd === "init") {
 
     if (p.match(/answer is too low/)) {
         console.log("Answer is too low, wait 60s")
-
+        
     } else if (p.match(/answer too recently/)) {
         let wait = p.match(/You have (.+) left to wait./)[1]
         console.log(`Answered too recently, wait ${wait}`);
-
+        
     } else if (p.match(/answer is too high/)) {
         console.log("Answer is too high, wait 60s")
+        
+    } else if (p.match(/not the right answer/)) {
+        console.log(`Answer is incorrect (${fileData})`);
 
     } else if (p.match(/That's the right answer/)) {
         console.log(`Answer is correct (${fileData})`);
