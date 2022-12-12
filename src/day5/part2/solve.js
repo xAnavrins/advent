@@ -20,7 +20,7 @@ export async function run(input, lines) {
         } else if (!stacksDone) {
             let crate
             while (crate = stacksRegexp.exec(line)) {
-                if (!stacks[i]) stacks[i] = []
+                stacks[i] ??= []
                 if (crate[1].match(/[A-Z]/)) stacks[i].push(crate[1])
                 i++
             }

@@ -3,7 +3,7 @@ export async function run(input, lines) {
 
     let i = 0
     lines.forEach(line => {
-        if (!forest[i]) forest[i] = []
+        forest[i] ??= []
         forest[i] = line.split("").map(Number)
         i++
     })

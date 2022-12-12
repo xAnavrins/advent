@@ -10,10 +10,9 @@ export async function run(input, lines) {
     let cycles = []
     lines.forEach(line => {
         let { groups } = line.match(/^(?<op>\w+) ?(?<arg>-?\d+)?$/)
-        let { op, arg } = groups
-        let currOp = ops[op]
+        let currOp = ops[groups.op]
         for (let i = 0; i < currOp.cycle; i++) cycles.push(regs.x)
-        currOp.exec(Number(arg))
+        currOp.exec(Number(groups.arg))
     })
 
     let crt = []
@@ -21,7 +20,7 @@ export async function run(input, lines) {
     let vpos = 0
     while (cycle < cycles.length) {
         let spriteDist = Math.abs(cycles[cycle] - (cycle % 40))
-        if (!crt[vpos]) crt[vpos] = []
+        crt[vpos] ??= []
         crt[vpos].push(spriteDist < 2)
         cycle++
         if (cycle % 40 == 0) vpos++

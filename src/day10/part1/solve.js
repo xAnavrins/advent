@@ -11,10 +11,9 @@ export async function run(input, lines) {
     let cycles = []
     lines.forEach(line => {
         let { groups } = line.match(/^(?<op>\w+) ?(?<arg>-?\d+)?$/)
-        let { op, arg } = groups
-        let currOp = ops[op]
+        let currOp = ops[groups.op]
         for (let i = 0; i < currOp.cycle; i++) cycles.push(regs.x)
-        currOp.exec(Number(arg))
+        currOp.exec(Number(groups.arg))
     })
 
     return sampleCycle.reduce(((acc, cycle) => acc += cycle * cycles[cycle - 1]), 0)
