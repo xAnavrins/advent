@@ -56,9 +56,11 @@ if (cmd === "init") {
     let { run } = await import(path.join("..", solvePath))
     let data = await fs.readFile(inputPath)
     let stringData = data.toString()
+    console.time("Took")
     let result = await run(stringData, stringData.split(/\r?\n/))
-    await fs.writeFile(resultPath, result?.toString() ?? "")
+    console.timeEnd("Took")
     console.log("Result: ", result)
+    await fs.writeFile(resultPath, result?.toString() ?? "")
 
 } else if (cmd === "submit") {
     let { resultPath } = getPaths(day, part)

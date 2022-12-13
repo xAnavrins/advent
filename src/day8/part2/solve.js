@@ -4,7 +4,7 @@ export async function run(input, lines) {
     let i = 0
     lines.forEach(line => {
         forest[i] ??= []
-        forest[i] = line.split("").map(Number)
+        forest[i] = [...line].map(Number)
         i++
     })
 
