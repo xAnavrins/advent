@@ -1,7 +1,7 @@
 {
   "name": "adventofcode",
   "version": "1.0.0",
-  "description": "Advent of Code 2022",
+  "description": "Advent of Code 2023",
   "author": "Anavrins",
   "homepage": "https://github.com/xAnavrins/adventofcode#readme",
   "license": "ISC",
@@ -21,10 +21,10 @@
     "url": "git+https://github.com/xAnavrins/adventofcode.git"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.22"
   },
   "dependencies": {
     "jsdom": "^20.0.3",
-    "node-fetch": "^3.3.0"
+    "node-fetch": "^3.3.2"
   }
 }
