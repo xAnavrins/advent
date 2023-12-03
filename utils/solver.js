@@ -20,7 +20,6 @@ function getPaths(day, part) {
 }
 
 let dayUrl = `https://adventofcode.com/2023/day/${day}`
-console.log("dayUrl", dayUrl)
 
 if (cmd === "init") {
     let { dayPath, partPath, inputPath, solvePath } = getPaths(day, "1")
