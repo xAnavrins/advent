@@ -59,7 +59,7 @@ if (cmd === "init") {
     console.time("Took")
     let result = await run(stringData, stringData.split(/\r?\n/))
     console.timeEnd("Took")
-    console.log("Result: ", result)
+    console.log("Result:", result)
     await fs.writeFile(resultPath, result?.toString() ?? "")
 
 } else if (cmd === "submit") {
