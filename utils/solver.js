@@ -19,7 +19,7 @@ function getPaths(day, part) {
     return paths
 }
 
-let dayUrl = `https://adventofcode.com/2023/day/${day}`
+let dayUrl = `https://adventofcode.com/2024/day/${day}`
 
 if (cmd === "init") {
     let { dayPath, partPath, inputPath, solvePath } = getPaths(day, "1")
@@ -67,7 +67,7 @@ if (cmd === "init") {
 
     let fileData = await fs.readFile(resultPath)
     
-    console.log("Submitting your answer...")
+    console.log(`Submitting your answer... (${fileData})`)
     let data = await fetch(dayUrl + "/answer", {
         method: "POST",
         headers: {...headers, 'Content-Type': 'application/x-www-form-urlencoded'},
@@ -81,8 +81,8 @@ if (cmd === "init") {
         console.log("Answer is too low, wait 60s")
         
     } else if (p.match(/answer too recently/)) {
-        let wait = p.match(/You have (.+) left to wait./)[1]
-        console.log(`Answered too recently, wait ${wait}`);
+        let match = p.match(/You have (.+) left to wait./)
+        console.log(`Answered too recently, wait ${match.at(1)}`);
         
     } else if (p.match(/answer is too high/)) {
         console.log("Answer is too high, wait 60s")
