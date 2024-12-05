@@ -1,6 +1,3 @@
-// POST https://adventofcode.com/2022/day/2/answer
-// level=1&answer=14531
-
 import path from "path/posix"
 import fs from "fs/promises"
 import fetch from "node-fetch"

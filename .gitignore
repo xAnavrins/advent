@@ -1,2 +1,4 @@
 node_modules
 aoc_headers.js
+**/result.txt
+**/input.txt
